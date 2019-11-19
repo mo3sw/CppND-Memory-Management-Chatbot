@@ -34,7 +34,7 @@ public:
     ChatBot& operator=(const ChatBot& other); //Copy Assignment
     ChatBot& operator=(ChatBot&& other); //Move Assignment
     ChatLogic* getChatLogic(){
-    	return _chatLogic;
+    	return std::move(_chatLogic);
     }
     //
     //// EOF STUDENT CODE

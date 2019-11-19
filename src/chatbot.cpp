@@ -69,6 +69,7 @@ ChatBot& ChatBot::operator=(const ChatBot& other){ //Copy Assignment
 //_currentNode , _rootNode , _chatLogic
 ChatBot::ChatBot(ChatBot&& other){ //Move Constructor
   std::cout << "ChatBot Move Constructor\n";
+  this->_image = new wxBitmap();
   this->_image = other._image;
 //     std::cout << "Here22\n";
   other._image = nullptr;
@@ -99,7 +100,8 @@ ChatBot& ChatBot::operator=(ChatBot&& other){//Move Assignment
   }
 //   std::cout << "Here9\n";
 //   std::cout << "Here6\n";
-  _image = other._image;
+   this->_image = new wxBitmap();
+  this->_image = other._image;
 //   std::cout << "Here7\n";
   other._image = NULL;
 //   std::cout << "Here2\n";

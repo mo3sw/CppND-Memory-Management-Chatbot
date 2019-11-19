@@ -43,15 +43,15 @@ void GraphNode::MoveChatbotHere(ChatBot chatbot)
 {
 //   std::cout << "Here1\n";
     _chatBot = std::move(chatbot);
-//   _chatBot.getChatLogic()->SetChatbotHandle(_chatBot);
+  _chatBot.getChatLogic()->SetChatbotHandle(&_chatBot);
     _chatBot.SetCurrentNode(this);
 //   std::cout << "Here10\n";
 }
 
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
-  ChatBot _chatBot = ChatBot("../images/chatbot.png");
-  std::cout << "Here22\n";
+//   ChatBot _chatBot = ChatBot("../images/chatbot.png");
+  std::cout << "Here5\n";
     newNode->MoveChatbotHere(std::move(_chatBot));
 //     _chatBot = nullptr; // invalidate pointer at source
 }
