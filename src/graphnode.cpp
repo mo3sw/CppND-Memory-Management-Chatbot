@@ -51,7 +51,7 @@ void GraphNode::MoveChatbotHere(ChatBot chatbot)
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
 //   ChatBot _chatBot = ChatBot("../images/chatbot.png");
-  std::cout << "Here5\n";
+//   std::cout << "Here5\n";
     newNode->MoveChatbotHere(std::move(_chatBot));
 //     _chatBot = nullptr; // invalidate pointer at source
 }

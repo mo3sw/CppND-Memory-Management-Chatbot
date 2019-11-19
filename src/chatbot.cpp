@@ -79,13 +79,13 @@ ChatBot::ChatBot(ChatBot&& other){ //Move Constructor
   
   this->_rootNode = other._rootNode;
   other._rootNode = nullptr;
-  std::cout << "Here22\n";
+//   std::cout << "Here22\n";
   this->_chatLogic = other._chatLogic;
-  std::cout << "Here22\n";
+//   std::cout << "Here22\n";
   this->_chatLogic->SetChatbotHandle(this);
-  std::cout << "Here22\n";
+//   std::cout << "Here22\n";
   other._chatLogic = nullptr;
-  std::cout << "Here22\n";
+//   std::cout << "Here22\n";
 }
 
 ChatBot& ChatBot::operator=(ChatBot&& other){//Move Assignment
