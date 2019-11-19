@@ -51,47 +51,69 @@ ChatBot::ChatBot(const ChatBot& other){ //Copy Constructor
   this->_rootNode = other._rootNode;
   this->_chatLogic = other._chatLogic;
 } 
-//_currentNode , _rootNode , _chatLogic
-ChatBot::ChatBot(ChatBot&& other) noexcept{ //Move Constructor
-  std::cout << "ChatBot Move Constructor\n";
-  this->_image = other._image;
-  other._image = NULL;
-  this->_currentNode = other._currentNode;
-  other._currentNode = nullptr;
-  this->_rootNode = other._rootNode;
-  other._rootNode = nullptr;
-  this->_chatLogic = other._chatLogic;
-  other._chatLogic = nullptr;
-}
 
 ChatBot& ChatBot::operator=(const ChatBot& other){ //Copy Assignment
 	std::cout << "ChatBot Copy Assignment\n";
- 	if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
-    {
-        delete _image;
-        _image = NULL;
-    }
+//  	if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
+//     {
+//         delete _image;
+//         _image = NULL;
+//     }
     this->_image = other._image;
 	this->_currentNode = other._currentNode;
 	this->_rootNode = other._rootNode;
 	this->_chatLogic = other._chatLogic;
+  return *this;
 }
 
-ChatBot& ChatBot::operator=(ChatBot&& other) noexcept{//Move Assignment
-  std::cout << "ChatBot Move Assignment\n";
-  if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
-  {
-      delete _image;
-      _image = NULL;
-  }
+//_currentNode , _rootNode , _chatLogic
+ChatBot::ChatBot(ChatBot&& other){ //Move Constructor
+  std::cout << "ChatBot Move Constructor\n";
   this->_image = other._image;
-  other._image = NULL;
+//     std::cout << "Here22\n";
+  other._image = nullptr;
+//     std::cout << "Here22\n";
   this->_currentNode = other._currentNode;
   other._currentNode = nullptr;
+  
   this->_rootNode = other._rootNode;
   other._rootNode = nullptr;
+  std::cout << "Here22\n";
   this->_chatLogic = other._chatLogic;
+  std::cout << "Here22\n";
+  this->_chatLogic->SetChatbotHandle(this);
+  std::cout << "Here22\n";
   other._chatLogic = nullptr;
+  std::cout << "Here22\n";
+}
+
+ChatBot& ChatBot::operator=(ChatBot&& other){//Move Assignment
+  std::cout << "ChatBot Move Assignment\n";
+  if(this == &other)
+    {
+        return *this;
+    }
+//   std::cout << "Here22\n";
+  if(_image != nullptr){
+    delete _image;
+  }
+//   std::cout << "Here9\n";
+//   std::cout << "Here6\n";
+  _image = other._image;
+//   std::cout << "Here7\n";
+  other._image = NULL;
+//   std::cout << "Here2\n";
+  this->_currentNode = other._currentNode;
+  other._currentNode = nullptr;
+//   std::cout << "Here3\n";
+  this->_rootNode = other._rootNode;
+  other._rootNode = nullptr;
+//   std::cout << "Here4\n";
+  this->_chatLogic = other._chatLogic;
+  _chatLogic->SetChatbotHandle(this);
+  other._chatLogic = nullptr;
+//   std::cout << "Here5\n";
+  return *this;
 } 
 ////
 //// EOF STUDENT CODE
