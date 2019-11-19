@@ -43,7 +43,7 @@ void GraphNode::MoveChatbotHere(ChatBot chatbot)
 {
 //   std::cout << "Here1\n";
     _chatBot = std::move(chatbot);
-  _chatBot.getChatLogic()->SetChatbotHandle(&_chatBot);
+//   _chatBot.getChatLogic()->SetChatbotHandle(&_chatBot);
     _chatBot.SetCurrentNode(this);
 //   std::cout << "Here10\n";
 }

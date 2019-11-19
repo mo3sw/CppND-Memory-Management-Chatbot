@@ -46,46 +46,42 @@ ChatBot::~ChatBot()
 ////
 ChatBot::ChatBot(const ChatBot& other){ //Copy Constructor
   std::cout << "ChatBot Copy Constructor\n";
-  this->_image = other._image;
+  this->_image = new wxBitmap();
+  *_image = *other._image;
   this->_currentNode = other._currentNode;
   this->_rootNode = other._rootNode;
   this->_chatLogic = other._chatLogic;
+  this->_chatLogic->SetChatbotHandle(this);
 } 
 
 ChatBot& ChatBot::operator=(const ChatBot& other){ //Copy Assignment
 	std::cout << "ChatBot Copy Assignment\n";
-//  	if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
-//     {
-//         delete _image;
-//         _image = NULL;
-//     }
-    this->_image = other._image;
+	if(this == &other)
+    {
+        return *this;
+    }
+  this->_image = new wxBitmap();
+    *_image = *other._image;
 	this->_currentNode = other._currentNode;
 	this->_rootNode = other._rootNode;
 	this->_chatLogic = other._chatLogic;
+  this->_chatLogic->SetChatbotHandle(this);
   return *this;
 }
 
 //_currentNode , _rootNode , _chatLogic
 ChatBot::ChatBot(ChatBot&& other){ //Move Constructor
   std::cout << "ChatBot Move Constructor\n";
-  this->_image = new wxBitmap();
+//   this->_image = new wxBitmap();
   this->_image = other._image;
-//     std::cout << "Here22\n";
   other._image = nullptr;
-//     std::cout << "Here22\n";
   this->_currentNode = other._currentNode;
   other._currentNode = nullptr;
-  
   this->_rootNode = other._rootNode;
   other._rootNode = nullptr;
-//   std::cout << "Here22\n";
   this->_chatLogic = other._chatLogic;
-//   std::cout << "Here22\n";
   this->_chatLogic->SetChatbotHandle(this);
-//   std::cout << "Here22\n";
   other._chatLogic = nullptr;
-//   std::cout << "Here22\n";
 }
 
 ChatBot& ChatBot::operator=(ChatBot&& other){//Move Assignment
@@ -94,27 +90,19 @@ ChatBot& ChatBot::operator=(ChatBot&& other){//Move Assignment
     {
         return *this;
     }
-//   std::cout << "Here22\n";
   if(_image != nullptr){
     delete _image;
   }
-//   std::cout << "Here9\n";
-//   std::cout << "Here6\n";
-   this->_image = new wxBitmap();
+//    this->_image = new wxBitmap();
   this->_image = other._image;
-//   std::cout << "Here7\n";
   other._image = NULL;
-//   std::cout << "Here2\n";
   this->_currentNode = other._currentNode;
   other._currentNode = nullptr;
-//   std::cout << "Here3\n";
   this->_rootNode = other._rootNode;
   other._rootNode = nullptr;
-//   std::cout << "Here4\n";
   this->_chatLogic = other._chatLogic;
   _chatLogic->SetChatbotHandle(this);
   other._chatLogic = nullptr;
-//   std::cout << "Here5\n";
   return *this;
 } 
 ////
